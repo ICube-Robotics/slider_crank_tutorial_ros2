@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="motor_drive">
+    <ros2_control name="motor_drive" type="system">
+    <hardware>
+      <plugin>ethercat_driver/EthercatDriver</plugin>
+      <param name="master_id">0</param>
+      <param name="control_frequency">100</param>
+    </hardware>
+
+   <gpio name="gpio_0">
+      <state_interface name="status"/>
+      <state_interface name="position"/>
+      <command_interface name="ctrl"/>
+      <command_interface name="position"/>
+      <command_interface name="latch_value"/>
+      <ec_module name="EL5101">
+        <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
+        <param name="alias">0</param>
+        <param name="position">1</param>
+        <param name="slave_config">./EL5101_slave_config.yaml</param>
+      </ec_module>
+    </gpio>
+
+    <gpio name="gpio_1">
+      <command_interface name="analog_output.1"/>
+      <command_interface name="analog_output.2"/>
+      <ec_module name="EL4132">
+        <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
+        <param name="alias">0</param>
+        <param name="position">2</param>
+        <param name="slave_config">./EL4132_slave_config.yaml</param>
+      </ec_module>
+    </gpio>
+    <gpio name="gpio_2">
+      <state_interface name="analog_input.1"/>
+      <state_interface name="analog_input.2"/>
+      <ec_module name="EL3102">
+        <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
+        <param name="alias">0</param>
+        <param name="position">3</param>
+        <param name="slave_config">./EL3102_slave_config.yaml</param>
+      </ec_module>
+    </gpio>
+  </ros2_control>
+  </xacro:macro>
+
+</robot>
