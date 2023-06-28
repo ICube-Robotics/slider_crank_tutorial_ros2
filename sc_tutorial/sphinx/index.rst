@@ -1,5 +1,5 @@
-RAMSAI
-======
+slider_crank_tutorial_ros2
+==========================
 
 
 .. toctree::

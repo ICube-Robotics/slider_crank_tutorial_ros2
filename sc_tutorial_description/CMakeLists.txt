@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(scara_description)
+project(sc_tutorial_description)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>scara_description</name>
+  <name>sc_tutorial_description</name>
   <version>1.0.0</version>
-  <description>Description package for demo scara robot</description>
+  <description>Description package for actuated slider-crank mechanism demo ROS2</description>
   <maintainer email="macbednarczyk@gmail.com">Maciej Bednarczyk</maintainer>
   <license>Apache License 2.0</license>
 

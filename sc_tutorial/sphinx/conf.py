@@ -28,7 +28,7 @@ from pathlib import Path
 
 # -- Project information -----------------------------------------------------
 
-project = "RAMSAI"
+project = "Slider_Crank demo mechanism"
 copyright = "2023, ICUBE Laboratory, University of Strasbourg"
 author = " Laurent Barbé, Maciej Bednarczyk"
 
@@ -51,7 +51,7 @@ extensions = [
     "breathe",
 ]
 
-breathe_default_project = "RAMSAI"
+breathe_default_project = "slider_crank_tutorial_ros2"
 
 
 def get_package(package: str):
