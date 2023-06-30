@@ -11,10 +11,15 @@
 
    <gpio name="gpio_0">
       <state_interface name="status"/>
-      <state_interface name="position"/>
+      <state_interface name="value"/>
       <command_interface name="ctrl"/>
       <command_interface name="position"/>
       <command_interface name="latch_value"/>
+      <command_interface name="status"/>
+      <command_interface name="value"/>
+      <state_interface name="ctrl"/>
+      <state_interface name="position"/>
+      <state_interface name="latch_value"/>
       <ec_module name="EL5101">
         <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
         <param name="alias">0</param>
@@ -22,10 +27,11 @@
         <param name="slave_config">/home/iris/ros2_ws/src/slider_crank_tutorial_ros2/sc_tutorial_description/ros2_control/EL5101_slave_config.yaml</param>
       </ec_module>
     </gpio>
-
     <gpio name="gpio_1">
       <command_interface name="analog_output.1"/>
       <command_interface name="analog_output.2"/>
+      <state_interface name="analog_output.1"/>
+      <state_interface name="analog_output.2"/>
       <ec_module name="EL4132">
         <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
         <param name="alias">0</param>
@@ -36,6 +42,8 @@
     <gpio name="gpio_2">
       <state_interface name="analog_input.1"/>
       <state_interface name="analog_input.2"/>
+      <command_interface name="analog_input.1"/>
+      <command_interface name="analog_input.2"/>
       <ec_module name="EL3102">
         <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
         <param name="alias">0</param>

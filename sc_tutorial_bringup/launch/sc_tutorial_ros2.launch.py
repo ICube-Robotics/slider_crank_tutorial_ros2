@@ -21,8 +21,7 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-
-    # Declare arguments
+ # Declare arguments
     declared_arguments = []
     declared_arguments.append(
         DeclareLaunchArgument(
@@ -41,8 +40,8 @@ def generate_launch_description():
             " ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("sc_tutorial"),
-                    "description/config",
+                    FindPackageShare("sc_tutorial_description"),
+                    "config", 
                     description_file,
                 ]
             ),
@@ -52,12 +51,12 @@ def generate_launch_description():
 
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare("ethercat_motor_drive"),
+            FindPackageShare("sc_tutorial_description"),
             "config",
-            "controllers.yaml",
+            "sc_tutorial_controllers.yaml",
         ]
     )
-
+    
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
@@ -77,33 +76,20 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster", "-c", "/controller_manager"],
     )
 
-    trajectory_controller_spawner = Node(
+    gpio_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["trajectory_controller", "-c", "/controller_manager"],
-    )
-
-    velocity_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["velocity_controller", "-c", "/controller_manager"],
-    )
-
-    effort_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["effort_controller", "-c", "/controller_manager"],
+        arguments=["gpio_controller", "-c", "/controller_manager"],
     )
 
     nodes = [
         control_node,
         robot_state_pub_node,
         joint_state_broadcaster_spawner,
-        trajectory_controller_spawner,
-        # velocity_controller_spawner,
-        # effort_controller_spawner,
+        gpio_controller_spawner
     ]
 
     return LaunchDescription(
-        declared_arguments +
+        declared_arguments + 
         nodes)
+   

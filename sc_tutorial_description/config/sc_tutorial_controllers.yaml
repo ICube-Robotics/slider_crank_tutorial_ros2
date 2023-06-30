@@ -1,40 +1,45 @@
 controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
-
-    scara_trajectory_controller:
-      type: joint_trajectory_controller/JointTrajectoryController
-
-    scara_position_controller:
-      type: position_controllers/JointGroupPositionController
-
-    scara_joint_velocity_controller:
-      type: scara_joint_velocity_controller/ScaraJointVelocityController
-
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
+    gpio_controller:
+      type: gpio_controllers/GpioCommandController
 
-scara_trajectory_controller:
+
+gpio_controller:
   ros__parameters:
+    gpios:
+      - gpio_0
+      - gpio_1
+      - gpio_2
     command_interfaces:
-      - position
+      gpio_0:
+        - ctrl
+        - position
+        - latch_value
+        - status
+        - value
+      gpio_1:
+        - analog_output.1
+        - analog_output.2
+      gpio_2:
+        - analog_input.1
+        - analog_input.2        
     state_interfaces:
-      - position
-    joints:
-      - joint1
-      - joint2
-      - joint3
-
-scara_position_controller:
-  ros__parameters:
-    joints:
-      - joint1
-      - joint2
-      - joint3
-
-scara_joint_velocity_controller:
-  ros__parameters:
-    joints:
-      - joint1
-      - joint2
-      - joint3
+      gpio_0:
+        - ctrl
+        - position
+        - latch_value
+        - status
+        - value
+      gpio_1:
+        - analog_output.1
+        - analog_output.2
+      gpio_2:
+        - analog_input.1
+        - analog_input.2
+        
+        
+        
+ 
